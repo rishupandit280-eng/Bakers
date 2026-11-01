@@ -36,8 +36,11 @@
       const head = document.createElement("div");
       head.className = "menu-section-head";
       head.innerHTML =
-        '<div class="cat-emoji">' + cat.emoji + '</div>' +
-        '<div><h2>' + esc(cat.name) + '</h2><p class="blurb">' + esc(cat.blurb) + '</p></div>';
+        '<div class="cat-img" style="background-image:url(\'' + (cat.img || "") + '\')"></div>' +
+        '<div class="cat-txt">' +
+          '<h2>' + cat.emoji + ' ' + esc(cat.name) + '</h2>' +
+          '<p class="blurb">' + esc(cat.blurb) + '</p>' +
+        '</div>';
       sec.appendChild(head);
 
       const grid = document.createElement("div");

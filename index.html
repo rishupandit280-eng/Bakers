@@ -9,6 +9,9 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <!-- scroll progress -->
+  <div id="scroll-progress"></div>
+
   <!-- preloader -->
   <div id="preloader">
     <div class="loader-cup"><div class="loader-fill"></div><div class="loader-steam"><span></span><span></span><span></span></div></div>
@@ -54,7 +57,7 @@
     <div class="hero-inner">
       <span class="hero-badge" data-reveal>⭐ <span id="rating">4.2</span> rated · Indapur, Pune</span>
       <img class="hero-logo" src="assets/logo.svg" alt="Bakers Gallery" />
-      <h1 data-reveal data-delay="80">Freshly Baked,<br /><span class="accent">Lovingly Served.</span></h1>
+      <h1 data-reveal data-delay="80">Freshly Baked,<br /><span class="accent shimmer">Lovingly Served.</span></h1>
       <p class="tagline" data-reveal data-delay="160">Cakes, pastries, pizza, burgers and thick cold coffee — made fresh daily and delivered across Indapur.</p>
       <div class="hero-meta" data-reveal data-delay="220">
         <span class="meta-chip">🕙 <span id="hours">9 AM – 8:30 PM · Daily</span></span>
@@ -62,12 +65,20 @@
         <span class="meta-chip">📞 <span id="phone">+91 79723 85812</span></span>
       </div>
       <div class="hero-cta" data-reveal data-delay="280">
-        <a href="menu.html" class="btn btn-primary">🍰 Order Now</a>
+        <a href="menu.html" class="btn btn-primary pulse shine">🍰 Order Now</a>
         <a href="index.html#about" class="btn btn-ghost">Discover the Bakery</a>
       </div>
     </div>
     <span class="scroll-cue">⌄</span>
   </section>
+
+  <!-- marquee -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>🎂 Fresh Cakes Daily</span><span>🍕 Hot Pizza</span><span>🍔 Juicy Burgers</span><span>🥤 Thick Cold Coffee</span><span>🍪 Crunchy Cookies</span><span>🥐 Flaky Puffs</span><span>🎉 Custom Celebration Cakes</span><span>🛵 Fast Delivery in Indapur</span>
+      <span>🎂 Fresh Cakes Daily</span><span>🍕 Hot Pizza</span><span>🍔 Juicy Burgers</span><span>🥤 Thick Cold Coffee</span><span>🍪 Crunchy Cookies</span><span>🥐 Flaky Puffs</span><span>🎉 Custom Celebration Cakes</span><span>🛵 Fast Delivery in Indapur</span>
+    </div>
+  </div>
 
   <!-- features -->
   <section id="about">
@@ -78,26 +89,54 @@
         <p>From a small-town dream to a beloved bakery chain — we bake everything fresh, the way you love it.</p>
       </div>
       <div class="features-grid">
-        <div class="feature-card" data-reveal data-delay="0">
+        <div class="feature-card tilt" data-reveal data-delay="0">
           <div class="ico">🎂</div>
           <h3>Baked Fresh Daily</h3>
           <p>Cakes, breads and pastries made in-house every single morning.</p>
         </div>
-        <div class="feature-card" data-reveal data-delay="80">
+        <div class="feature-card tilt" data-reveal data-delay="80">
           <div class="ico">🍕</div>
           <h3>Beyond Just Cake</h3>
           <p>Hot pizza, juicy burgers and thick cold coffee — all in one place.</p>
         </div>
-        <div class="feature-card" data-reveal data-delay="160">
+        <div class="feature-card tilt" data-reveal data-delay="160">
           <div class="ico">🛵</div>
           <h3>Fast to Your Door</h3>
           <p>Quick delivery across Indapur — fresh and warm on arrival.</p>
         </div>
-        <div class="feature-card" data-reveal data-delay="240">
+        <div class="feature-card tilt" data-reveal data-delay="240">
           <div class="ico">🎉</div>
           <h3>Celebration Cakes</h3>
           <p>Custom cakes for birthdays, anniversaries and every happy moment.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- stats -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" data-reveal><div class="stat-num" data-count="14">0</div><div class="stat-label">Menu Categories</div></div>
+        <div class="stat-card" data-reveal data-delay="80"><div class="stat-num" data-count="85" data-suffix="+">0</div><div class="stat-label">Fresh Items</div></div>
+        <div class="stat-card" data-reveal data-delay="160"><div class="stat-num" data-count="112" data-suffix="+">0</div><div class="stat-label">Google Reviews</div></div>
+        <div class="stat-card" data-reveal data-delay="240"><div class="stat-num">4.2★</div><div class="stat-label">Google Rating</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section id="how">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="kicker">How It Works</span>
+        <h2>Order in four easy steps</h2>
+      </div>
+      <div class="steps-row">
+        <div class="step-card" data-reveal data-delay="0"><span class="step-num">1</span><div class="step-ico">🛒</div><h3>Pick Your Favourites</h3><p>Browse the menu and add items to your cart.</p></div>
+        <div class="step-card" data-reveal data-delay="80"><span class="step-num">2</span><div class="step-ico">📱</div><h3>Verify Your Phone</h3><p>Enter your details and confirm with a one-time OTP.</p></div>
+        <div class="step-card" data-reveal data-delay="160"><span class="step-num">3</span><div class="step-ico">💳</div><h3>Pay Online or Cash</h3><p>Choose UPI payment or pay when it arrives.</p></div>
+        <div class="step-card" data-reveal data-delay="240"><span class="step-num">4</span><div class="step-ico">🛵</div><h3>We Deliver Hot</h3><p>Your order reaches us instantly and we get baking.</p></div>
       </div>
     </div>
   </section>
@@ -178,10 +217,11 @@
         var it = window.ALL_ITEMS[id];
         if (!it) return;
         var card = document.createElement("a");
-        card.className = "dish-card";
+        card.className = "dish-card tilt";
         card.href = "menu.html";
         card.innerHTML =
-          '<div class="thumb">' + it.emoji + '</div>' +
+          '<div class="thumb"><span class="thumb-img" style="background-image:url(\'' + (it.img || "") + '\')"></span>' +
+          '<span class="thumb-emoji">' + it.emoji + '</span></div>' +
           '<div class="body"><span class="name">' + esc(it.name) + '</span>' +
           '<span class="price">' + fmt(it.price) + '</span>' +
           '<span class="veg-dot ' + (it.veg ? "veg" : "nonveg") + '"></span></div>';
@@ -190,22 +230,20 @@
 
       // gallery — real photo + bakery tiles
       var gallery = [
-        { type: "img", src: "assets/cafe.jpg", label: "Our Indapur bakery" },
-        { type: "emoji", emoji: "🎂", label: "Cakes" },
-        { type: "emoji", emoji: "🍰", label: "Pastries" },
-        { type: "emoji", emoji: "🍕", label: "Pizza" },
-        { type: "emoji", emoji: "🍔", label: "Burgers" },
-        { type: "emoji", emoji: "🥤", label: "Cold Coffee" },
-        { type: "emoji", emoji: "🍪", label: "Cookies" },
-        { type: "emoji", emoji: "🥐", label: "Puffs" }
+        { src: "assets/cafe.jpg", label: "Our Indapur bakery" },
+        { src: "assets/food/cakes.jpg", label: "Cakes" },
+        { src: "assets/food/pizza.jpg", label: "Pizza" },
+        { src: "assets/food/burgers.jpg", label: "Burgers" },
+        { src: "assets/food/cold-coffee-shakes.jpg", label: "Cold Coffee" },
+        { src: "assets/food/cookies.jpg", label: "Cookies" },
+        { src: "assets/food/puffs-rolls.jpg", label: "Puffs" },
+        { src: "assets/food/pastries.jpg", label: "Pastries" }
       ];
       var gGrid = document.getElementById("galleryGrid");
       gallery.forEach(function (g) {
         var fig = document.createElement("div");
-        fig.className = "g" + (g.type === "emoji" ? " emoji" : "");
-        fig.innerHTML = g.type === "img"
-          ? '<img src="' + g.src + '" alt="' + g.label + '" loading="lazy" />'
-          : '<span>' + g.emoji + '<small>' + g.label + '</small></span>';
+        fig.className = "g img-cap";
+        fig.innerHTML = '<img src="' + g.src + '" alt="' + g.label + '" loading="lazy" /><span class="g-cap">' + g.label + '</span>';
         gGrid.appendChild(fig);
       });
 

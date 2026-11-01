@@ -215,6 +215,8 @@ section { padding: clamp(56px, 8vw, 100px) clamp(16px, 4vw, 48px); }
 .gallery-grid .g.emoji { display: grid; place-items: center; background: linear-gradient(135deg,#fbe7c6,#f0d5ab); font-size: 2.6rem; text-align: center; transition: transform .3s ease, box-shadow .3s ease; }
 .gallery-grid .g.emoji:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .gallery-grid .g.emoji small { display: block; font-size: .78rem; font-weight: 600; color: var(--coffee-soft); font-family: var(--font-body); margin-top: 4px; }
+.gallery-grid .g.img-cap { position: relative; }
+.gallery-grid .g.img-cap .g-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 12px; background: linear-gradient(transparent, rgba(43,23,16,.78)); color: #fff; font-size: .8rem; font-weight: 600; }
 .gallery-grid .g img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
 .gallery-grid .g:hover img { transform: scale(1.1); }
 .gallery-grid .g:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
@@ -363,6 +365,88 @@ footer a:hover { opacity: 1; transform: translateX(3px); }
 
 /* ---------- fly dot ---------- */
 .fly-dot { position: fixed; width: 16px; height: 16px; border-radius: 50%; background: var(--caramel); z-index: 1600; transition: transform .55s cubic-bezier(.3,.7,.3,1); pointer-events: none; box-shadow: 0 4px 12px rgba(201,128,63,.6); }
+
+/* ---------- category image header ---------- */
+.menu-section-head { display: flex; align-items: center; gap: 16px; }
+.menu-section-head .cat-img {
+  width: 78px; height: 78px; flex: 0 0 78px; border-radius: 18px;
+  background-size: cover; background-position: center; box-shadow: var(--shadow-sm); border: 2px solid #fff;
+}
+.menu-section-head .cat-txt h2 { font-size: 1.5rem; }
+.menu-section-head .cat-txt .blurb { color: var(--muted); font-size: .9rem; }
+
+/* ---------- scroll progress bar ---------- */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--caramel), var(--amber));
+  z-index: 1000;
+}
+
+/* ---------- back to top ---------- */
+#toTop {
+  position: fixed; right: 22px; bottom: 26px; width: 50px; height: 50px; border-radius: 50%;
+  background: var(--coffee); color: #f6e9d3; font-size: 1.35rem; display: grid; place-items: center;
+  box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden; transform: translateY(16px) scale(.8);
+  transition: all .35s cubic-bezier(.16,1,.3,1); z-index: 800;
+}
+#toTop.show { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+#toTop:hover { background: var(--caramel); transform: translateY(-3px); }
+
+/* ---------- shimmer heading ---------- */
+.shimmer {
+  background: linear-gradient(100deg, var(--caramel) 20%, #ffe6bd 40%, var(--caramel) 60%);
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent; animation: shimmer 3.2s linear infinite;
+}
+@keyframes shimmer { to { background-position: -200% center; } }
+
+/* ---------- card tilt ---------- */
+.tilt { will-change: transform; transform-style: preserve-3d; transition: transform .18s ease, box-shadow .3s ease; }
+
+/* ---------- pulse CTA ---------- */
+.pulse { animation: pulse 2.6s ease-in-out infinite; }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 10px 26px rgba(201,128,63,.4); }
+  50% { box-shadow: 0 10px 44px rgba(201,128,63,.8); }
+}
+
+/* ---------- button shine ---------- */
+.btn.shine { position: relative; overflow: hidden; }
+.btn.shine::after {
+  content: ""; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,.55), transparent);
+  animation: shine 3.2s ease-in-out infinite;
+}
+@keyframes shine { 60%, 100% { left: 130%; } }
+
+/* ---------- marquee ---------- */
+.marquee { overflow: hidden; background: var(--espresso); color: #f3e4cb; padding: 13px 0; white-space: nowrap; }
+.marquee-track { display: inline-block; animation: marquee 26s linear infinite; }
+.marquee-track span { margin: 0 26px; font-weight: 600; letter-spacing: .5px; font-size: .95rem; }
+.marquee-track b { color: var(--caramel-2); }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---------- stats counters ---------- */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
+.stat-card { background: var(--paper); border-radius: 18px; padding: 26px 20px; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid rgba(58,35,24,.05); transition: transform .3s ease, box-shadow .3s ease; }
+.stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.stat-card .stat-num { font-family: var(--font-display); font-size: 2.5rem; font-weight: 900; color: var(--caramel); line-height: 1; }
+.stat-card .stat-label { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+/* ---------- how it works ---------- */
+.steps-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 18px; }
+.step-card { background: var(--paper); border-radius: 18px; padding: 28px 20px 22px; text-align: center; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; transition: transform .3s ease, box-shadow .3s ease; }
+.step-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+.step-card .step-num { position: absolute; top: 10px; right: 16px; font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; color: rgba(201,128,63,.16); line-height: 1; }
+.step-card .step-ico { font-size: 2.1rem; margin-bottom: 10px; }
+.step-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.step-card p { font-size: .85rem; color: var(--muted); }
+
+/* ---------- featured image cards ---------- */
+.dish-card .thumb { position: relative; background: linear-gradient(135deg, #fbe7c6, #f0d5ab); }
+.dish-card .thumb .thumb-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .6s ease; }
+.dish-card:hover .thumb .thumb-img { transform: scale(1.1); }
+.dish-card .thumb .thumb-emoji { position: relative; z-index: 1; font-size: 3rem; filter: drop-shadow(0 3px 8px rgba(0,0,0,.35)); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {

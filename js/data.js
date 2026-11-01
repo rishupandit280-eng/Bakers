@@ -208,6 +208,28 @@ const MENU = [
   }
 ];
 
+// attach a real food photo to each category
+const CATEGORY_IMG = {
+  cakes: "assets/food/cakes.jpg",
+  pastries: "assets/food/pastries.jpg",
+  "cupcakes-muffins": "assets/food/cupcakes-muffins.jpg",
+  "breads-buns": "assets/food/breads-buns.jpg",
+  cookies: "assets/food/cookies.jpg",
+  "puffs-rolls": "assets/food/puffs-rolls.jpg",
+  pizza: "assets/food/pizza.jpg",
+  burgers: "assets/food/burgers.jpg",
+  sandwiches: "assets/food/sandwiches.jpg",
+  wraps: "assets/food/wraps.jpg",
+  snacks: "assets/food/snacks.jpg",
+  "cold-coffee-shakes": "assets/food/cold-coffee-shakes.jpg",
+  "hot-beverages": "assets/food/hot-beverages.jpg",
+  mocktails: "assets/food/mocktails.jpg"
+};
+MENU.forEach(c => {
+  c.img = CATEGORY_IMG[c.id] || "";
+  c.items.forEach(it => { it.img = c.img; });
+});
+
 // Flattened lookup for cart operations
 const ALL_ITEMS = {};
 MENU.forEach(cat => cat.items.forEach(it => { ALL_ITEMS[it.id] = it; }));
