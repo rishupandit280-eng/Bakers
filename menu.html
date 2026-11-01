@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Bakers Gallery | Order Online</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="preloader">
+    <div class="loader-cup"><div class="loader-fill"></div><div class="loader-steam"><span></span><span></span><span></span></div></div>
+    <div class="loader-brand"><div class="lb-name">Bakers Gallery</div><div class="lb-sub">brewing freshness…</div></div>
+  </div>
+
+  <div class="ambient">
+    <div class="grain"></div>
+    <span class="steam"></span><span class="steam"></span><span class="steam"></span><span class="steam"></span><span class="steam"></span>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo.svg" alt="Bakers Gallery logo" />
+      <span class="brand-name">Bakers <em>Gallery</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#gallery">Gallery</a></li>
+      <li><a href="checkout.html">Checkout</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="checkout.html" class="cart-fab" id="cart-fab">
+        <span>🛒</span><span class="cta-label">Cart</span><span class="cart-count" id="cartCount">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="menu-hero">
+      <h1>Our Menu</h1>
+      <p>Everything is made fresh to order — pick your favourites and add them to the cart.</p>
+    </section>
+
+    <div class="menu-toolbar">
+      <div class="search-bar">
+        <span class="search-ico">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search dishes… (e.g. butter chicken, pasta, fries)" autocomplete="off" />
+      </div>
+    </div>
+
+    <section>
+      <div class="cat-chips" id="catChips"></div>
+      <div class="container">
+        <div class="no-results" id="noResults">😕 No dishes found. Try a different search.</div>
+        <div id="menuRoot"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="f-about">
+        <img src="assets/logo.svg" alt="Bakers Gallery" />
+        <p style="margin-bottom:16px;font-size:.92rem;opacity:.85">Freshly baked, brewed & made with love in Indapur.</p>
+        <p style="font-size:.85rem;opacity:.7">🕙 9 AM – 8:30 PM · Daily</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="index.html#about">About Us</a>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <a href="tel:+917972385812">📞 +91 79723 85812</a>
+        <a href="https://maps.app.goo.gl/yUUTsAW4sf99iCycA" target="_blank" rel="noopener">📍 SNR Shopping Centre, Indapur, Pune 413106</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> Bakers Gallery · Indapur</div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    (function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
+      var nav = document.getElementById("navbar");
+      window.addEventListener("scroll", function () { nav.classList.toggle("scrolled", window.scrollY > 20); });
+      document.getElementById("hamburger").addEventListener("click", function () {
+        document.getElementById("navLinks").classList.toggle("open");
+      });
+      window.addEventListener("load", function () {
+        setTimeout(function () { document.getElementById("preloader").classList.add("done"); }, 300);
+      });
+      setTimeout(function () { document.getElementById("preloader").classList.add("done"); }, 3000);
+    })();
+  </script>
+</body>
+</html>

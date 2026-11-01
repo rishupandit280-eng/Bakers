@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout — Bakers Gallery</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="preloader">
+    <div class="loader-cup"><div class="loader-fill"></div><div class="loader-steam"><span></span><span></span><span></span></div></div>
+    <div class="loader-brand"><div class="lb-name">Bakers Gallery</div><div class="lb-sub">brewing freshness…</div></div>
+  </div>
+
+  <div class="ambient">
+    <div class="grain"></div>
+    <span class="steam"></span><span class="steam"></span><span class="steam"></span><span class="steam"></span><span class="steam"></span>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/logo.svg" alt="Bakers Gallery logo" />
+      <span class="brand-name">Bakers <em>Gallery</em></span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="checkout.html" class="active">Checkout</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="checkout.html" class="cart-fab" id="cart-fab">
+        <span>🛒</span><span class="cta-label">Cart</span><span class="cart-count" id="cartCount">0</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <main class="checkout-wrap container">
+    <h1>Checkout</h1>
+    <div class="steps-indicator">
+      <span class="step-dot active"></span><span class="step-dot"></span><span class="step-dot"></span><span class="step-dot"></span>
+    </div>
+
+    <div class="checkout-layout">
+      <!-- left: steps -->
+      <div>
+        <!-- STEP 1: details -->
+        <div class="panel step active" id="step-details">
+          <h2><span class="num">1</span>Your Details</h2>
+          <div class="field" id="field-cName">
+            <label for="cName">Full Name</label>
+            <input type="text" id="cName" placeholder="e.g. Raj Kumar" autocomplete="name" />
+            <div class="err">Please enter your full name.</div>
+          </div>
+          <div class="field" id="field-cPhone">
+            <label for="cPhone">Mobile Number</label>
+            <input type="tel" id="cPhone" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" autocomplete="tel" />
+            <div class="err">Enter a valid 10-digit mobile number.</div>
+          </div>
+          <div class="field" id="field-cAddress">
+            <label for="cAddress">Delivery Address</label>
+            <textarea id="cAddress" placeholder="House / flat, street, area, landmark, pincode"></textarea>
+            <div class="err">Enter your full delivery address.</div>
+          </div>
+          <div class="field">
+            <label for="cNote">Order Note (optional)</label>
+            <textarea id="cNote" placeholder="e.g. Less spicy, no onions, call on arrival…"></textarea>
+          </div>
+          <button class="btn btn-primary btn-block" id="detailsContinue">Continue → Verify Phone</button>
+        </div>
+
+        <!-- STEP 2: OTP -->
+        <div class="panel step" id="step-otp">
+          <h2><span class="num">2</span>Verify Your Phone</h2>
+          <p class="otp-hint" id="otpHint">We'll send a one-time password (OTP) to verify your number.</p>
+          <div class="otp-row">
+            <input type="tel" maxlength="1" inputmode="numeric" /><input type="tel" maxlength="1" inputmode="numeric" /><input type="tel" maxlength="1" inputmode="numeric" /><input type="tel" maxlength="1" inputmode="numeric" /><input type="tel" maxlength="1" inputmode="numeric" /><input type="tel" maxlength="1" inputmode="numeric" />
+          </div>
+          <div class="otp-hint" id="otpError" style="color:var(--red);display:none"></div>
+          <button class="btn btn-primary btn-block" id="verifyBtn">Verify &amp; Continue</button>
+          <div class="otp-resend">Didn't get it? <button id="resendBtn"><span id="resendLabel">Resend OTP</span></button></div>
+          <button class="btn btn-ghost btn-block" id="backToDetails" style="margin-top:12px">← Back to details</button>
+        </div>
+
+        <!-- STEP 3: payment -->
+        <div class="panel step" id="step-payment">
+          <h2><span class="num">3</span>Payment</h2>
+          <div class="pay-options">
+            <label class="pay-option" id="opt-cash">
+              <input type="radio" name="paymethod" id="payCash" value="cash" checked />
+              <span class="po-ico">💵</span>
+              <span class="po-body"><span class="po-title">Cash on Delivery</span><span class="po-sub">Pay when your order arrives</span></span>
+            </label>
+            <label class="pay-option" id="opt-online">
+              <input type="radio" name="paymethod" id="payOnline" value="online" />
+              <span class="po-ico">📱</span>
+              <span class="po-body"><span class="po-title">Pay Online (UPI)</span><span class="po-sub">Google Pay, PhonePe, Paytm &amp; more</span></span>
+            </label>
+          </div>
+
+          <div class="upi-panel" id="upiPanel" style="display:none">
+            <div class="amount" id="upiAmount">₹0</div>
+            <div class="note">Pay this amount to <b id="upiIdLabel"></b> and enter your transaction ID to confirm.</div>
+            <button class="btn btn-primary" id="payUpiBtn">💳 Pay via UPI</button>
+            <button class="btn btn-ghost" id="copyUpi" style="margin-left:8px">Copy UPI ID</button>
+            <div class="field" style="margin-top:14px">
+              <label for="utr">UPI Transaction / UTR ID (required to confirm)</label>
+              <input type="text" id="utr" placeholder="e.g. 412345678901" />
+            </div>
+          </div>
+
+          <div class="otp-hint" id="payError" style="color:var(--red);display:none"></div>
+          <button class="btn btn-primary btn-block" id="placeOrderBtn" style="margin-top:18px">✅ Place Order</button>
+        </div>
+
+        <!-- STEP 4: success -->
+        <div class="panel step" id="step-success">
+          <div class="success-wrap">
+            <div class="success-check">✓</div>
+            <div class="order-id" id="orderId">BC-0000</div>
+            <p class="success-sub" id="successSub">Order confirmed!</p>
+            <div class="notify-status" id="notifyStatus">Sending your order to the café…</div>
+            <div class="order-detail-box" id="orderDetails"></div>
+            <a class="btn btn-dark btn-block" id="callBtn" href="tel:+917972385812">📞 Call the Café</a>
+            <button class="btn btn-ghost btn-block" id="copyOrderBtn" style="margin-top:10px">📋 Copy order details</button>
+            <div style="display:flex;gap:10px;margin-top:14px">
+              <a class="btn btn-ghost" href="menu.html" style="flex:1">Back to Menu</a>
+              <button class="btn btn-ghost" id="backToPayment" style="flex:1">Change Payment</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: summary -->
+      <aside class="panel summary">
+        <div class="s-head">
+          <h3>Your Order <span id="summaryCount" style="color:var(--muted);font-weight:400;font-size:.9rem"></span></h3>
+          <button id="editCartBtn" style="color:var(--caramel);font-weight:600;font-size:.85rem">Edit</button>
+        </div>
+        <div class="summary-items" id="summaryItems"></div>
+        <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">₹0</span></div>
+        <div class="summary-row"><span>Delivery</span><span style="color:var(--green);font-weight:600">FREE</span></div>
+        <div class="summary-row total"><span>Total</span><span id="summaryTotal">₹0</span></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="f-about">
+        <img src="assets/logo.svg" alt="Bakers Gallery" />
+        <p style="margin-bottom:16px;font-size:.92rem;opacity:.85">Freshly baked, brewed & made with love in Indapur.</p>
+        <p style="font-size:.85rem;opacity:.7">🕙 9 AM – 8:30 PM · Daily</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <a href="tel:+917972385812">📞 +91 79723 85812</a>
+        <a href="https://maps.app.goo.gl/yUUTsAW4sf99iCycA" target="_blank" rel="noopener">📍 SNR Shopping Centre, Indapur, Pune 413106</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> Bakers Gallery · Indapur</div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/checkout.js"></script>
+  <script>
+    (function () {
+      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("upiIdLabel").textContent = window.CAFE.upiId;
+      var nav = document.getElementById("navbar");
+      window.addEventListener("scroll", function () { nav.classList.toggle("scrolled", window.scrollY > 20); });
+      document.getElementById("hamburger").addEventListener("click", function () {
+        document.getElementById("navLinks").classList.toggle("open");
+      });
+    })();
+  </script>
+</body>
+</html>
