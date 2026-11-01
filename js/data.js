@@ -225,9 +225,27 @@ const CATEGORY_IMG = {
   "hot-beverages": "assets/food/hot-beverages.jpg",
   mocktails: "assets/food/mocktails.jpg"
 };
+// colour theme for each category (vibrant gradient pairs)
+const CATEGORY_THEME = {
+  cakes: ["#f06fa5", "#d63f7f"],
+  pastries: ["#ff9e7a", "#ef7a2f"],
+  "cupcakes-muffins": ["#b98af0", "#7c44c9"],
+  "breads-buns": ["#f0c25c", "#d18a13"],
+  cookies: ["#d9a86e", "#a06a24"],
+  "puffs-rolls": ["#ffce55", "#e79415"],
+  pizza: ["#ff7f5c", "#d93b1d"],
+  burgers: ["#ffab4a", "#ec6f0d"],
+  sandwiches: ["#8fd45f", "#4f9b1f"],
+  wraps: ["#56cfb2", "#1f9178"],
+  snacks: ["#ffc14d", "#e8930b"],
+  "cold-coffee-shakes": ["#d6a675", "#915d31"],
+  "hot-beverages": ["#a8784f", "#5f3a1c"],
+  mocktails: ["#63c4ef", "#2277bd"]
+};
 MENU.forEach(c => {
   c.img = CATEGORY_IMG[c.id] || "";
-  c.items.forEach(it => { it.img = c.img; });
+  c.theme = CATEGORY_THEME[c.id] || ["#e8c99b", "#b97a2f"];
+  c.items.forEach(it => { it.img = c.img; it.theme = c.theme; });
 });
 
 // Flattened lookup for cart operations

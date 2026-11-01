@@ -38,7 +38,6 @@ const UPI_ID = process.env.UPI_ID || "9503819919@upi";
 const UPI_NAME = process.env.UPI_NAME || "Bakers Gallery";
 const MSG91_KEY = process.env.MSG91_AUTH_KEY || "";
 const MSG91_TEMPLATE = process.env.MSG91_TEMPLATE_ID || "";
-const MSG91_SENDER = process.env.MSG91_SENDER_ID || "BKCAFE";
 const RZP_ID = process.env.RAZORPAY_KEY_ID || "";
 const RZP_SECRET = process.env.RAZORPAY_KEY_SECRET || "";
 const WA_TOKEN = process.env.WHATSAPP_TOKEN || "";
@@ -99,22 +98,25 @@ function isValidPhone(p) {
   return /^[6-9]\d{9}$/.test(String(p || ""));
 }
 
-/* ---------- SMS (MSG91) ---------- */
+/* ---------- SMS (MSG91 Send OTP) ---------- */
 async function sendSms(phone, otp) {
   if (!MSG91_KEY || !MSG91_TEMPLATE) return false;
-  const body = JSON.stringify({
+  const params = new URLSearchParams({
     template_id: MSG91_TEMPLATE,
-    sender_id: MSG91_SENDER,
-    short_url: "0",
-    recipients: [{ mobiles: "91" + phone, otp }]
+    mobile: "91" + phone,
+    otp: otp,
+    otp_length: "6",
+    otp_expiry: "5",
+    unicode: "0"
   });
   try {
-    const res = await fetch("https://control.msg91.com/api/v5/flow/", {
+    const res = await fetch("https://control.msg91.com/api/v5/otp?" + params.toString(), {
       method: "POST",
-      headers: { "Content-Type": "application/json", authkey: MSG91_KEY },
-      body
+      headers: { "Content-Type": "application/json", Accept: "application/json", authkey: MSG91_KEY },
+      body: "{}"
     });
-    return res.ok;
+    const data = await res.json().catch(() => ({}));
+    return !!(data && data.type === "success");
   } catch (e) {
     return false;
   }

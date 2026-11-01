@@ -9,6 +9,11 @@
 
   let activeCat = "all";
 
+  function rgba(hex, a) {
+    const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    return "rgba(" + r + "," + g + "," + b + "," + a + ")";
+  }
+
   /* ---- category chips ---- */
   function buildChips() {
     const all = document.createElement("button");
@@ -35,11 +40,14 @@
 
       const head = document.createElement("div");
       head.className = "menu-section-head";
+      head.style.backgroundImage = "url('" + (cat.img || "") + "')";
       head.innerHTML =
-        '<div class="cat-img" style="background-image:url(\'' + (cat.img || "") + '\')"></div>' +
-        '<div class="cat-txt">' +
-          '<h2>' + cat.emoji + ' ' + esc(cat.name) + '</h2>' +
-          '<p class="blurb">' + esc(cat.blurb) + '</p>' +
+        '<div class="cat-overlay" style="background:linear-gradient(100deg,' + rgba(cat.theme[0], 0.92) + ',' + rgba(cat.theme[1], 0.82) + ')">' +
+          '<div class="cat-content">' +
+            '<span class="cat-emoji">' + cat.emoji + '</span>' +
+            '<div class="cat-txt"><h2>' + esc(cat.name) + '</h2><p class="blurb">' + esc(cat.blurb) + '</p></div>' +
+            '<span class="cat-count">' + cat.items.length + ' items</span>' +
+          '</div>' +
         '</div>';
       sec.appendChild(head);
 
@@ -58,8 +66,10 @@
     el.className = "item-card";
     el.dataset.id = it.id;
     el.dataset.name = it.name.toLowerCase();
+    el.style.setProperty("--c1", it.theme[0]);
+    el.style.setProperty("--c2", it.theme[1]);
     el.innerHTML =
-      '<div class="item-emoji">' + it.emoji + '</div>' +
+      '<div class="item-thumb" style="background-image:url(\'' + (it.img || "") + '\')"><span class="item-emoji-badge">' + it.emoji + '</span></div>' +
       '<div class="item-info">' +
         '<div class="iname"><span class="veg-dot ' + (it.veg ? "veg" : "nonveg") + '"></span>' + esc(it.name) + '</div>' +
         '<div class="iprice">' + fmt(it.price) + '</div>' +
